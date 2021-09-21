@@ -109,11 +109,9 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
     if (getSupportActionBar() != null) {
       getSupportActionBar().hide();
     }
-    Resources res = this.getApplicationContext().getResources();
-    String packageName = this.getApplicationContext().getPackageName();
 
     setContentView(getResources().getIdentifier("mlkit_barcode_capture", "layout", getPackageName()));
-    setupUI(findViewById(res.getIdentifier("topLayout", "layout", packageName)));
+    setupUI(findViewById(getResources().getIdentifier("topLayout", "id", getPackageName())));
 
     _Preview = (MLKitCameraSourcePreview) findViewById(getResources().getIdentifier("preview", "id", getPackageName()));
     _Preview.ViewFinderWidth = ViewFinderWidth;
@@ -127,8 +125,8 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
     CameraFacing = getIntent().getIntExtra("CameraFacing", 1);
     Log.d(TAG, "BarcodeCaptureActivity -> CameraFacing = " + CameraFacing);
 
-    EditText txtBarcode = (EditText) findViewById(res.getIdentifier("txtBarcode", "id", packageName));
-    Button clickButton = (Button) findViewById(res.getIdentifier("submitBarcode", "id", packageName));
+    EditText txtBarcode = (EditText) findViewById(getResources().getIdentifier("txtBarcode", "id", getPackageName()));
+    Button clickButton = (Button) findViewById(getResources().getIdentifier("submitBarcode", "id", getPackageName()));
     clickButton.setOnClickListener( new View.OnClickListener() {
 
       @Override
