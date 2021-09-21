@@ -8,9 +8,11 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
@@ -60,7 +62,6 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.intelliacc.MLKitBarcodeScanner.camera.MLKitCameraSource2;
 import com.intelliacc.MLKitBarcodeScanner.camera.MLKitCameraSourcePreview;
 import com.intelliacc.MLKitBarcodeScanner.camera.MLKitGraphicOverlay;
-import com.intelliacc.ShopShopPicking.R;
 
 public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
                                           implements MLKitBarcodeScanningProcessor.BarcodeUpdateListener {
@@ -108,9 +109,11 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
     if (getSupportActionBar() != null) {
       getSupportActionBar().hide();
     }
+    Resources res = this.getApplicationContext().getResources();
+    String packageName = this.getApplicationContext().getPackageName();
 
     setContentView(getResources().getIdentifier("mlkit_barcode_capture", "layout", getPackageName()));
-    setupUI(findViewById(R.id.topLayout));
+    setupUI(findViewById(res.getIdentifier("topLayout", "layout", packageName)));
 
     _Preview = (MLKitCameraSourcePreview) findViewById(getResources().getIdentifier("preview", "id", getPackageName()));
     _Preview.ViewFinderWidth = ViewFinderWidth;
@@ -124,8 +127,8 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
     CameraFacing = getIntent().getIntExtra("CameraFacing", 1);
     Log.d(TAG, "BarcodeCaptureActivity -> CameraFacing = " + CameraFacing);
 
-    EditText txtBarcode = (EditText) findViewById(R.id.txtBarcode);
-    Button clickButton = (Button) findViewById(R.id.submitBarcode);
+    EditText txtBarcode = (EditText) findViewById(res.getIdentifier("txtBarcode", "id", packageName));
+    Button clickButton = (Button) findViewById(res.getIdentifier("submitBarcode", "id", packageName));
     clickButton.setOnClickListener( new View.OnClickListener() {
 
       @Override
@@ -158,7 +161,7 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
 
     int rc = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
     if (rc == PackageManager.PERMISSION_GRANTED) {
-      createCameraSource(true, false);
+      createCameraSource(true, false, CameraFacing);
     } else {
       requestCameraPermission();
     }
