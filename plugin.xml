@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="ml-kit-barcode-scanner-plugin" version="1.0.1">
+	<description>
+		MLKit Barcode Scanner Plugin from IntelliAcc
+	</description>
+	<name>
+		MLKit Barcode Scanner Plugin
+	</name>
+	<author>
+		IntelliAcc
+	</author>
+	<license>
+		Apache 2.0
+	</license>
+	<keywords>
+		ml-kit,barcode scanner,barcode,machine learning,plugin
+	</keywords>
+	<js-module src="www/MLKitBarcodeScanner.js" name="MLKitBarcodeScanner">
+		<clobbers target="MLKitBarcodeScanner" />
+	</js-module>
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="MLKitBarcodeScanner">
+				<param name="android-package" value="com.intelliacc.MLKitBarcodeScanner.MLKitBarcodeScanner" />
+			</feature>
+		</config-file>
+		<config-file parent="/*" target="app/src/main/AndroidManifest.xml">
+			<uses-permission android:name="android.permission.CAMERA" />
+			<!-- <uses-feature android:name="android.hardware.camera2.full" android:required="true" /> -->
+		</config-file>
+		<config-file parent="application" target="app/src/main/AndroidManifest.xml">
+			<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+			<meta-data android:name="com.google.mlkit.vision.DEPENDENCIES" android:value="barcode" />
+			<activity android:screenOrientation="portrait" android:label="@string/title_activity_main" android:name="com.intelliacc.MLKitBarcodeScanner.MLKitSecondaryActivity" />
+			<activity android:screenOrientation="portrait" android:label="Read Barcode" android:name="com.intelliacc.MLKitBarcodeScanner.MLKitBarcodeCaptureActivity" android:theme="@style/Theme.AppCompat.Light" />
+		</config-file>
+		<config-file target="res/values/strings.xml" parent="/*">
+			<string name="txtBarcode">
+				Scan Barcode or type it here
+			</string>
+			<string name="ok">
+				OK
+			</string>
+			<string name="permission_camera_rationale">
+				Access to the camera is needed for detection
+			</string>
+			<string name="no_camera_permission">
+				This application cannot run because it does not have the camera permission.  The application will now exit.
+			</string>
+			<string name="low_storage_error">
+				Face detector dependencies cannot be downloaded due to low device storage
+			</string>
+			<string name="title_activity_main">
+				Barcode Reader Activity
+			</string>
+			<string name="barcode_header">
+				Click &quot;Read Barcode&quot; to read a barcode
+			</string>
+			<string name="read_barcode">
+				Read Barcode
+			</string>
+			<string name="auto_focus">
+				Auto Focus
+			</string>
+			<string name="use_flash">
+				Use Flash
+			</string>
+			<string name="barcode_success">
+				Barcode read successfully
+			</string>
+			<string name="barcode_failure">
+				No barcode captured
+			</string>
+			<string name="barcode_error">
+				"Error reading barcode: %1$s"
+			</string>
+		</config-file>
+		<source-file src="src/android/src/MLKitBarcodeCaptureActivity.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner" />
+		<source-file src="src/android/src/MLKitBarcodeGraphic.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner" />
+		<source-file src="src/android/src/MLKitBarcodeScanner.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner" />
+		<source-file src="src/android/src/MLKitBarcodeScanningProcessor.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner" />
+		<source-file src="src/android/src/MLKitSecondaryActivity.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner" />
+		<source-file src="src/android/src/camera/MLKitCameraSource2.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner/camera" />
+		<source-file src="src/android/src/camera/MLKitCameraSourcePreview.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner/camera" />
+		<source-file src="src/android/src/camera/MLKitGraphicOverlay.java" target-dir="src/com/intelliacc/MLKitBarcodeScanner/camera" />
+		<resource-file src="src/android/res/layout/mlkit_activity_main.xml" target="res/layout/mlkit_activity_barcode_scanner.xml" />
+		<resource-file src="src/android/res/layout/mlkit_barcode_capture.xml" target="res/layout/mlkit_barcode_capture.xml" />
+		<resource-file src="src/android/res/drawable/mlkit_flashlight.png" target="res/drawable/mlkit_flashlight.png" />
+		<resource-file src="src/android/res/drawable/mlkit_horizontal_line.xml" target="res/drawable/mlkit_horizontal_line.xml" />
+		<resource-file src="src/android/res/drawable/mlkit_vertical_line.xml" target="res/drawable/mlkit_vertical_line.xml" />
+		<resource-file src="src/android/res/drawable/mlkit_torch_active.xml" target="res/drawable/mlkit_torch_active.xml" />
+		<resource-file src="src/android/res/drawable/mlkit_torch_inactive.xml" target="res/drawable/mlkit_torch_inactive.xml" />
+		<framework src="androidx.appcompat:appcompat:1.1.0" />
+		<framework src="com.google.android.material:material:1.0.0" />
+		<framework src="com.google.mlkit:barcode-scanning:16.1.1" />
+		<framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
+	</platform>
+	<platform name="ios">
+		<config-file target="config.xml" parent="/*">
+			<feature name="MLKitBarcodeScanner">
+				<param name="ios-package" value="MLKitBarcodeScanner" />
+			</feature>
+		</config-file>
+		<framework src="AVFoundation.framework" />
+		<podspec>
+			<config>
+				<source url="https://github.com/CocoaPods/Specs.git" />
+			</config>
+			<pods use-frameworks="false">
+				<pod name="GoogleMLKit/BarcodeScanning" />
+			</pods>
+		</podspec>
+		<header-file src="src/ios/MLKitBarcodeScanner.h" />
+		<header-file src="src/ios/MLKitCameraViewController.h" />
+		<source-file src="src/ios/MLKitBarcodeScanner.m" />
+		<source-file src="src/ios/MLKitCameraViewController.m" />
+	</platform>
+</plugin>
