@@ -113,11 +113,10 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
   // ----------------------------------------------------------------------------
   private void openNewActivity(Context context, JSONArray args) {
     Intent intent = new Intent(context, MLKitSecondaryActivity.class);
-    intent.putExtra("DetectionTypes", args.optInt(0, 1234));
+    intent.putExtra("DetectionTypes", args.optInt(2, 1234));
     intent.putExtra("ViewFinderWidth", args.optDouble(1, .5));
     intent.putExtra("ViewFinderHeight", args.optDouble(1, .7));
-    intent.putExtra("CameraFacing", args.optInt(2, 1));
-    Log.d("MLKitAndroidScanner", "openNewActivity -> CameraFacing = " + args.optInt(2, 1));
+    intent.putExtra("CameraFacing", args.optInt(0, 1));
 
     this.cordova.setActivityResultCallback(this);
     this.cordova.startActivityForResult(this, intent, RC_BARCODE_CAPTURE);
