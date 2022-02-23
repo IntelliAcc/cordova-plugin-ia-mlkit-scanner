@@ -753,9 +753,8 @@ public class MLKitCameraSource2 {
      */
     @SuppressLint("Assert")
     void release() {
-        if (_ProcessingThread != null) {
-          assert (_ProcessingThread.getState() == State.TERMINATED);
-        }
+      if (_ProcessingThread != null) {
+        assert (_ProcessingThread.getState() == State.TERMINATED);
       }
     }
 

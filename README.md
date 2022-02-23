@@ -1,7 +1,7 @@
 MLKit Barcode Scanner
 =======================
 
-Kindly do not use versions 1.0.7 to 1.0.9, but upgrade to 1.1.0 to avoid crashes.
+Kindly do not use versions 1.0.7 to 1.1.0, but upgrade to 1.1.1 to avoid crashes.
 
 Scan barcodes using the Google MLKit. This plugin supports the `android` and `ios` platforms.
 
