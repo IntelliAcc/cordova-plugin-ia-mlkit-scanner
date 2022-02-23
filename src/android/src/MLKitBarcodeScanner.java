@@ -23,6 +23,8 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 // import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
@@ -57,6 +59,27 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
     super.initialize(cordova, webView);
   }
 
+  /**
+    * Check the device to make sure it has the Google Play Services APK. If
+    * it doesn't, display a dialog that allows users to download the APK from
+    * the Google Play Store or enable it in the device's system settings.
+    */
+  private boolean checkPlayServices() {
+      GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
+      int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+      if (resultCode != ConnectionResult.SUCCESS) {
+          if (apiAvailability.isUserResolvableError(resultCode)) {
+              apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                      .show();
+          } else {
+              Log.i(TAG, "This device is not supported.");
+              finish();
+          }
+          return false;
+      }
+      return true;
+  }
+
   @Override
   public boolean execute(String p_Action, JSONArray p_Args, CallbackContext p_CallbackContext) throws JSONException {
     Context context = cordova.getActivity().getApplicationContext();
@@ -65,6 +88,10 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
     if (p_Action.equals("scanBarcode")) {
       Thread thread = new Thread(new OneShotTask(context, p_Args));
       thread.start();
+      return true;
+    } else if (p_Action.equals("checkSupport")) {
+      boolean hasSupport = this.checkPlayServices();
+      CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, hasSupport));
       return true;
     }
 
@@ -80,21 +107,21 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
         Intent d = new Intent();
         if (p_Data != null) {
           String barcode = p_Data.getStringExtra(MLKitBarcodeCaptureActivity.BarcodeValue);
-          JSONArray result = new JSONArray();
-          result.put(barcode);
-          result.put("");
-          result.put("");
-          CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, result));
+          // JSONArray result = new JSONArray();
+          // result.put(barcode);
+          // result.put("");
+          // result.put("");
+          CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, barcode));
 
           Log.d("MLKitAndroidScanner", "Barcode read: " + barcode);
         }
       } else {
         String err = p_Data.getParcelableExtra("err");
-        JSONArray result = new JSONArray();
-        result.put(err);
-        result.put("");
-        result.put("");
-        CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, result));
+        // JSONArray result = new JSONArray();
+        // result.put(err);
+        // result.put("");
+        // result.put("");
+        CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, err));
       }
     }
   }

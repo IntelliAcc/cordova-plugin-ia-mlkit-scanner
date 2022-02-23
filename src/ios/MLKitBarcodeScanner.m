@@ -42,15 +42,14 @@
                 forKey:@"orientation"];
   dispatch_async(dispatch_get_main_queue(), ^{
     NSLog(@"Arguments %@", command.arguments);
-      if(self->_scannerOpen == YES) {
+    if(self->_scannerOpen == YES) {
       //Scanner is currently open, throw error.
-      NSArray *response = @[@"SCANNER_OPEN", @"", @""];
-      CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsArray:response];
+      CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"SCANNER_OPEN"];
       
       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     } else {
       //Open scanner.
-        self->_scannerOpen = YES;
+      self->_scannerOpen = YES;
       self.cameraViewController = [[MLKitCameraViewController alloc] init];
       self.cameraViewController.modalPresentationStyle = UIModalPresentationFullScreen;
       self.cameraViewController.delegate = self;
@@ -69,14 +68,21 @@
     }
   });
 }
+
+- (void) checkSupport:(CDVInvokedUrlCommand*)command {
+  // This command is only for Android to check availability of Google Play Services
+  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
       
-			-(void)sendResult:(NSString *)value
+-(void)sendResult:(NSString *)value
 {
   [self.cameraViewController dismissViewControllerAnimated:NO completion:nil];
   _scannerOpen = NO;
   
-  NSArray *response = @[value, @"", @""];
-  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:response];
+  // NSArray *response = @[value, @"", @""];
+  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value];
   
   [self.commandDelegate sendPluginResult:pluginResult callbackId:_callback];
 }
@@ -86,8 +92,7 @@
   [self.cameraViewController dismissViewControllerAnimated:NO completion:nil];
   _scannerOpen = NO;
   
-  NSArray *response = @[@"USER_CANCELLED", @"", @""];
-  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsArray:response];
+  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"USER_CANCELLED"];
   
   [self.commandDelegate sendPluginResult:pluginResult callbackId:_callback];
   

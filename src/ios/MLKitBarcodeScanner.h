@@ -14,5 +14,6 @@
 @property (nonatomic, retain) MLKitCameraViewController* cameraViewController;
 
 - (void) scanBarcode:(CDVInvokedUrlCommand*)command;
+- (void) checkSupport:(CDVInvokedUrlCommand*)command;
 
 @end

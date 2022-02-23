@@ -8,21 +8,37 @@ Install the plugin using:
 npm install cordova-plugin-ia-mlkit-scanner
 ```
 
-Use the plugin in your code:
-``` javascript
-window['MLKitBarcodeScanner'].scanBarcode(cameraFacing, onSuccess, onError);
-```
+## Usage
+
+### Barcode Scanner
+To call up the barcode scanner, refer to this example code:
+
 __NOTE: cameraFacing__ should be set to 0 for back camera, and 1 for front camera.
 
-
-Be sure to pass the two handler functions.
-Example:
 ``` javascript
 function onSuccess(barcode){
   console.log("Success:"+barcode);
 }
 
-function onError(result) {
-  console.log("Error:"+result);
+function onError(message) {
+  console.log("Error:"+message);
 }
+
+window['MLKitBarcodeScanner'].scanBarcode(cameraFacing, onSuccess, onError);
+```
+
+---
+### Check Play Service Availability (ANDROID)
+As this plugin is based on Google's MLKit, Play services is required for it to function correctly on Android devices. You can check if the host device has support, by calling __checkSupport__:
+
+``` javascript
+function onSuccess(isSupported){
+  console.log("Has Support: " + isSupported);
+}
+
+function onError(message) {
+  console.log("Error: " + message);
+}
+
+window['MLKitBarcodeScanner'].checkSupport(onSuccess, onError);
 ```
