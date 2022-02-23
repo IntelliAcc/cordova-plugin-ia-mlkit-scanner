@@ -66,15 +66,11 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
     */
   private boolean checkPlayServices() {
       GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-      int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
+      int resultCode = apiAvailability.isGooglePlayServicesAvailable(this.cordova.getActivity().getApplicationContext());
       if (resultCode != ConnectionResult.SUCCESS) {
-          if (apiAvailability.isUserResolvableError(resultCode)) {
-              apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
-                      .show();
-          } else {
-              Log.i(TAG, "This device is not supported.");
-              finish();
-          }
+          // if (apiAvailability.isUserResolvableError(resultCode)) {
+          //   apiAvailability.getErrorDialog(this, resultCode, 9000).show();
+          // }
           return false;
       }
       return true;
