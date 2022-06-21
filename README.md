@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://img.shields.io/npm/v/cordova-plugin-ia-mlkit-scanner.svg) ](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 [![Total Downloads](https://img.shields.io/npm/dt/cordova-plugin-ia-mlkit-scanner.svg)](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 
-Kindly do not use versions 1.0.7 to 1.1.0, but upgrade to 1.1.1 to avoid crashes.
+Kindly do not use versions 1.0.7 to 1.1.0, but upgrade to 1.1.2 to avoid crashes.
 
 Scan barcodes using the Google MLKit. This plugin supports the `android` and `ios` platforms.
 
