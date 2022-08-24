@@ -16,7 +16,6 @@ import android.widget.TextView;
 // |  Google Imports
 // ----------------------------------------------------------------------------
 import com.google.android.gms.common.api.CommonStatusCodes;
-// import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
 public class MLKitSecondaryActivity extends Activity implements View.OnClickListener {

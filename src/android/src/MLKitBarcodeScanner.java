@@ -25,7 +25,6 @@ import org.json.JSONException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-// import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
 // ----------------------------------------------------------------------------

@@ -28,8 +28,6 @@ import androidx.annotation.StringDef;
 // ----------------------------------------------------------------------------
 import com.google.android.gms.common.images.Size;
 
-//import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
-
 // ----------------------------------------------------------------------------
 // |  Java Imports
 // ----------------------------------------------------------------------------

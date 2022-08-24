@@ -24,17 +24,12 @@ import androidx.annotation.UiThread;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-//import com.google.firebase.ml.vision.FirebaseVision;
 
 import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.common.InputImage;
-//import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
-//import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
-//import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-//import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
 
 // ----------------------------------------------------------------------------
 // |  Java Imports
@@ -79,7 +74,6 @@ public class MLKitBarcodeScanningProcessor {
 
   @GuardedBy("this")
   int _latestHeight;
-//  private FirebaseVisionImageMetadata _LatestImageMetaData;
 
   @GuardedBy("this")
   int _latestWidth;
@@ -90,9 +84,6 @@ public class MLKitBarcodeScanningProcessor {
   //  // To keep the images and metadata in process.
   @GuardedBy("this")
   private ByteBuffer _ProcessingImage;
-
-  @GuardedBy("this")
-//  private FirebaseVisionImageMetadata _ProcessingMetaData;
 
   // ----------------------------------------------------------------------------
   // |  Public Functions
@@ -139,9 +130,8 @@ public class MLKitBarcodeScanningProcessor {
       _latestWidth,
       _latestHeight,
       _latestRotation,
-      InputImage.IMAGE_FORMAT_NV21 // or IMAGE_FORMAT_YV12
+      InputImage.IMAGE_FORMAT_NV21
     );
-//    FirebaseVisionImage image = FirebaseVisionImage.fromByteBuffer(p_Data, p_FrameMetadata);
     DetectInVisionImage(image);
   }
 

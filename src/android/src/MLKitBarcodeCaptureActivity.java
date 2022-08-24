@@ -41,11 +41,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.material.snackbar.Snackbar;
 
-// import com.google.firebase.ml.vision.FirebaseVision;
-// import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
-// import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
-// import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
-
 import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
@@ -285,21 +280,6 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
   // ----------------------------------------------------------------------------
   @SuppressLint("InlinedApi")
   private void createCameraSource(boolean autoFocus, boolean useFlash, Integer cameraFacing) {
-    // int detectionType = 0;
-
-    // if (DetectionTypes == 0 || DetectionTypes == 1234) {
-    //   detectionType = (FirebaseVisionBarcode.FORMAT_CODE_39 | FirebaseVisionBarcode.FORMAT_DATA_MATRIX);
-    // } else {
-    //   detectionType = DetectionTypes;
-    // }
-
-    // FirebaseVisionBarcodeDetectorOptions options =
-    //     new FirebaseVisionBarcodeDetectorOptions.Builder()
-    //     .setBarcodeFormats(detectionType).build();
-
-    // FirebaseVisionBarcodeDetector barcodeDetector = FirebaseVision.getInstance().getVisionBarcodeDetector(options);
-    // MLKitBarcodeScanningProcessor scanningProcessor = new MLKitBarcodeScanningProcessor(barcodeDetector, this);
-
     BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
   		.setBarcodeFormats(
   		  Barcode.FORMAT_ALL_FORMATS
@@ -314,9 +294,6 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
         .setFacing(cameraFacing)
         .setRequestedPreviewSize(1600, 1024)
         .setRequestedFps(30.0f);
-//    30.0f
-//    1024
-//    768
 //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
       builder = builder.setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
 //    }
