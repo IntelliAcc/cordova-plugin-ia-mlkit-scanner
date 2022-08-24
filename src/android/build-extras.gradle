@@ -1,12 +1,7 @@
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:+'
-        classpath 'com.google.gms:google-services:4.3.8'
     }
 }
 repositories {
@@ -33,5 +28,3 @@ ext.postBuildExtras = {
         }
     }
 }
-
-apply plugin: com.google.gms.googleservices.GoogleServicesPlugin

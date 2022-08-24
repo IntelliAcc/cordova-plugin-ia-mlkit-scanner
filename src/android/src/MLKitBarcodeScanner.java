@@ -102,20 +102,11 @@ public class MLKitBarcodeScanner extends CordovaPlugin {
         Intent d = new Intent();
         if (p_Data != null) {
           String barcode = p_Data.getStringExtra(MLKitBarcodeCaptureActivity.BarcodeValue);
-          // JSONArray result = new JSONArray();
-          // result.put(barcode);
-          // result.put("");
-          // result.put("");
           CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, barcode));
-
           Log.d("MLKitAndroidScanner", "Barcode read: " + barcode);
         }
       } else {
         String err = p_Data.getParcelableExtra("err");
-        // JSONArray result = new JSONArray();
-        // result.put(err);
-        // result.put("");
-        // result.put("");
         CallbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, err));
       }
     }

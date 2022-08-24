@@ -1,46 +1,17 @@
 package com.intelliacc.MLKitBarcodeScanner.camera;
 
-// ----------------------------------------------------------------------------
-// |  Android Imports
-// ----------------------------------------------------------------------------
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
-// ----------------------------------------------------------------------------
-// |  Google Imports
-// ----------------------------------------------------------------------------
-// import com.google.android.gms.vision.CameraSource;
-
-// ----------------------------------------------------------------------------
-// |  Java Imports
-// ----------------------------------------------------------------------------
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 
-// ----------------------------------------------------------------------------
-// |  Cordova Imports
-// ----------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------------
-// |  Our Imports
-// ----------------------------------------------------------------------------
-
 public class MLKitGraphicOverlay<T extends MLKitGraphicOverlay.Graphic> extends View {
-  // ----------------------------------------------------------------------------
-  // | Public Properties
-  // ----------------------------------------------------------------------------
 
-  // ----------------------------------------------------------------------------
-  // | Protected Properties
-  // ----------------------------------------------------------------------------
-
-  // ----------------------------------------------------------------------------
-  // | Private Properties
-  // ----------------------------------------------------------------------------  
   private final Object _Lock              = new Object()                   ;
   private       int    _PreviewWidth                                       ;
   private       float  _WidthScaleFactor  = 1.0f                           ;
@@ -100,9 +71,6 @@ public class MLKitGraphicOverlay<T extends MLKitGraphicOverlay.Graphic> extends 
     postInvalidate();
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Protected Functions
-  // ----------------------------------------------------------------------------
   @Override
   protected void onDraw(Canvas p_Canvas) {
     super.onDraw(p_Canvas);
@@ -119,13 +87,6 @@ public class MLKitGraphicOverlay<T extends MLKitGraphicOverlay.Graphic> extends 
     }
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Private Functions
-  // ----------------------------------------------------------------------------  
-
-  // ----------------------------------------------------------------------------
-  // |  Helper classes
-  // ----------------------------------------------------------------------------
   public static abstract class Graphic {
     private MLKitGraphicOverlay _Overlay;
 
