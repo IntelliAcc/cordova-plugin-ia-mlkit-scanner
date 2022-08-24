@@ -16,26 +16,15 @@ import android.view.View;
 import android.widget.Button;
 import androidx.annotation.RequiresPermission;
 
-// ----------------------------------------------------------------------------
-// |  Google Imports
-// ----------------------------------------------------------------------------
 import com.google.android.gms.common.images.Size;
 
-// ----------------------------------------------------------------------------
-// |  Java Imports
-// ----------------------------------------------------------------------------
 import java.io.IOException;
 
 public class MLKitCameraSourcePreview extends ViewGroup {
-  // ----------------------------------------------------------------------------
-  // | Public Properties
-  // ----------------------------------------------------------------------------
+
   public double ViewFinderWidth  = .5;
   public double ViewFinderHeight = .7;
 
-  // ----------------------------------------------------------------------------
-  // | Private Properties
-  // ----------------------------------------------------------------------------
   private static final String TAG = "MLKitCamSrcPrev";
 
   private Context        _Context                 ;
@@ -91,9 +80,6 @@ public class MLKitCameraSourcePreview extends ViewGroup {
     addView(_TorchButton);
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Public Functions
-  // ----------------------------------------------------------------------------
   public int dpToPx(int p_Dot) {
     float density = _Context.getResources().getDisplayMetrics().density;
     return Math.round((float) p_Dot * density);
@@ -132,13 +118,6 @@ public class MLKitCameraSourcePreview extends ViewGroup {
     }
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Protected Functions
-  // ----------------------------------------------------------------------------
-
-  // ----------------------------------------------------------------------------
-  // |  Private Functions
-  // ----------------------------------------------------------------------------
   @RequiresPermission(Manifest.permission.CAMERA)
   private void startIfReady() throws IOException, SecurityException {
     if (_StartRequested && _SurfaceAvailable) {
@@ -232,9 +211,6 @@ public class MLKitCameraSourcePreview extends ViewGroup {
     return false;
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Helper classes
-  // ----------------------------------------------------------------------------
   private class SurfaceCallback implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder surface) {

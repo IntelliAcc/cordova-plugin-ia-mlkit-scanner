@@ -81,7 +81,7 @@ public class MLKitBarcodeScanningProcessor {
   @GuardedBy("this")
   int _latestRotation;
 
-  //  // To keep the images and metadata in process.
+  // To keep the images and metadata in process.
   @GuardedBy("this")
   private ByteBuffer _ProcessingImage;
 
@@ -115,10 +115,8 @@ public class MLKitBarcodeScanningProcessor {
   // ----------------------------------------------------------------------------
   private synchronized void ProcessLatestImage() {
     _ProcessingImage = _LatestImage;
-//    _ProcessingMetaData = _LatestImageMetaData;
     _LatestImage = null;
-//    _LatestImageMetaData = null;
-//    if (_ProcessingImage != null && _ProcessingMetaData != null) {
+
     if (_ProcessingImage != null) {
       ProcessImage(_ProcessingImage);
     }

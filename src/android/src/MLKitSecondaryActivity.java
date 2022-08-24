@@ -34,11 +34,6 @@ public class MLKitSecondaryActivity extends Activity implements View.OnClickList
   private static final int    RC_BARCODE_CAPTURE = 9001         ;
   private static final String TAG                = "BarcodeMain";
 
-  // private CompoundButton autoFocus    ;
-  // private CompoundButton useFlash     ;
-  // private TextView       statusMessage;
-  // private TextView       barcodeValue ;
-
   // ----------------------------------------------------------------------------
   // |  Public Functions
   // ----------------------------------------------------------------------------

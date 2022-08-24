@@ -1,33 +1,16 @@
 
 package com.intelliacc.MLKitBarcodeScanner;
 
-// ----------------------------------------------------------------------------
-// |  Android Imports
-// ----------------------------------------------------------------------------
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-// ----------------------------------------------------------------------------
-// |  Google Imports
-// ----------------------------------------------------------------------------
-
-// ----------------------------------------------------------------------------
-// |  Our Imports
-// ----------------------------------------------------------------------------
-//import com.intelliacc.MLKitBarcodeScanner.camera.GraphicOverlay;
 import com.google.mlkit.vision.barcode.Barcode;
 import com.intelliacc.MLKitBarcodeScanner.camera.MLKitGraphicOverlay;
 
 public class MLKitBarcodeGraphic extends MLKitGraphicOverlay.Graphic {
-  // ----------------------------------------------------------------------------
-  // |  Public Properties
-  // ----------------------------------------------------------------------------
 
-  // ----------------------------------------------------------------------------
-  // |  Private Properties
-  // ----------------------------------------------------------------------------
   private static final int COLOR_CHOICES[]     = { Color.BLUE, Color.CYAN, Color.GREEN };
   private static       int CURRENT_COLOR_INDEX = 0                                      ;
 
@@ -52,9 +35,6 @@ public class MLKitBarcodeGraphic extends MLKitGraphicOverlay.Graphic {
     _TextPaint.setTextSize(36.0f);
   }
 
-  // ----------------------------------------------------------------------------
-  // |  Public Functions
-  // ----------------------------------------------------------------------------
   public int getId() {
     return _Id;
   }
@@ -88,12 +68,4 @@ public class MLKitBarcodeGraphic extends MLKitGraphicOverlay.Graphic {
 
     canvas.drawText(barcode.getRawValue(), rect.left, rect.bottom, _TextPaint);
   }
-
-  // ----------------------------------------------------------------------------
-  // |  Protected Functions
-  // ----------------------------------------------------------------------------
-
-  // ----------------------------------------------------------------------------
-  // |  Private Functions
-  // ----------------------------------------------------------------------------
 }

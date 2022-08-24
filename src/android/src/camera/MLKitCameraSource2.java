@@ -23,14 +23,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.StringDef;
 
-// ----------------------------------------------------------------------------
-// |  Google Imports
-// ----------------------------------------------------------------------------
 import com.google.android.gms.common.images.Size;
 
-// ----------------------------------------------------------------------------
-// |  Java Imports
-// ----------------------------------------------------------------------------
 import java.io.IOException;
 import java.lang.Thread.State;
 import java.lang.annotation.Retention;
@@ -41,9 +35,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// ----------------------------------------------------------------------------
-// |  Our Imports
-// ----------------------------------------------------------------------------
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -53,22 +44,18 @@ import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
 import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.common.InputImage;
+
 import com.intelliacc.MLKitBarcodeScanner.MLKitBarcodeScanningProcessor;
 
 // The CameraSource send the preview frames to the barcode detector.
 @SuppressWarnings("deprecation")
 public class MLKitCameraSource2 {
-  // ----------------------------------------------------------------------------
-  // | Public Properties
-  // ----------------------------------------------------------------------------
+
   @SuppressLint("InlinedApi")
   public static final int CAMERA_FACING_BACK = CameraInfo.CAMERA_FACING_BACK;
   @SuppressLint("InlinedApi")
   public static final int CAMERA_FACING_FRONT = CameraInfo.CAMERA_FACING_FRONT;
 
-  // ----------------------------------------------------------------------------
-  // | Private Properties
-  // ----------------------------------------------------------------------------
   private static final String TAG = "OpenCameraSource";
 
   /**
