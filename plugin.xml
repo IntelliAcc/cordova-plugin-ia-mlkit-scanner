@@ -80,7 +80,7 @@
 		<resource-file src="src/android/res/drawable/mlkit_torch_inactive.xml" target="res/drawable/mlkit_torch_inactive.xml" />
 		<framework src="androidx.appcompat:appcompat:1.1.0" />
 		<framework src="com.google.android.material:material:1.0.0" />
-		<framework src="com.google.mlkit:barcode-scanning:16.1.2" />
+		<framework src="com.google.mlkit:barcode-scanning:17.0.2" />
 		<framework src="src/android/build-extras.gradle" custom="true" type="gradleReference" />
 	</platform>
 	<platform name="ios">
