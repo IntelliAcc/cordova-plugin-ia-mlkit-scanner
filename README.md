@@ -3,11 +3,9 @@
 [![Latest Stable Version](https://img.shields.io/npm/v/cordova-plugin-ia-mlkit-scanner.svg) ](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 [![Total Downloads](https://img.shields.io/npm/dt/cordova-plugin-ia-mlkit-scanner.svg)](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 
-Kindly do not use versions 1.0.7 to 1.1.0, but upgrade to 1.1.2 or newer to avoid crashes.
-
 Scan barcodes using the Google MLKit. This plugin supports the `android` and `ios` platforms.
 
-Install the plugin using:
+## Installation
 
 ```
 cordova plugin add cordova-plugin-ia-mlkit-scanner
@@ -25,9 +23,12 @@ ionic cordova plugin add cordova-plugin-ia-mlkit-scanner
 
 To call up the barcode scanner, refer to this example code:
 
-**NOTE: cameraFacing** should be set to 0 for back camera, and 1 for front camera.
+```typescript
+enum CameraFacing {
+  BACK = 0,
+  FRONT = 1
+}
 
-```javascript
 function onSuccess(barcode) {
   console.log("Success:" + barcode);
 }
@@ -36,7 +37,7 @@ function onError(message) {
   console.log("Error:" + message);
 }
 
-window["MLKitBarcodeScanner"].scanBarcode(cameraFacing, onSuccess, onError);
+window["MLKitBarcodeScanner"].scanBarcode(CameraFacing.FRONT, onSuccess, onError);
 ```
 
 ---
