@@ -1,20 +1,11 @@
 // Note: This code was forked from https://github.com/dealrinc/cordova-gmv-barcode-scanner
 
-// ----------------------------------------------------------------------------
-// |  Imports
-// ----------------------------------------------------------------------------
 @import AVFoundation;
-// @import Vision;
 @import MLKitBarcodeScanning;
 
 #import <MLKitBarcodeScanning/MLKitBarcodeScanning.h>
 #import <MLKitVision/MLKitVision.h>
-
-// ----------------------------------------------------------------------------
-// |  Header File Imports
-// ----------------------------------------------------------------------------
 #import "MLKitCameraViewController.h"
-
 
 @interface MLKitCameraViewController ()<AVCaptureVideoDataOutputSampleBufferDelegate>
 
@@ -102,16 +93,6 @@
   [self cleanupCaptureSession];
   [super viewDidUnload];
 }
-
-//-(void) viewWillAppear:(BOOL)Animated {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-//
-//}
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-//}
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
