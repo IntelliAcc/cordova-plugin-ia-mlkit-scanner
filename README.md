@@ -3,7 +3,9 @@
 [![Latest Stable Version](https://img.shields.io/npm/v/cordova-plugin-ia-mlkit-scanner.svg) ](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 [![Total Downloads](https://img.shields.io/npm/dt/cordova-plugin-ia-mlkit-scanner.svg)](https://npm-stat.com/charts.html?package=cordova-plugin-ia-mlkit-scanner)
 
-Scan barcodes using the Google MLKit. This plugin supports the `android` and `ios` platforms.
+Scan barcodes using [Google MLKit](https://developers.google.com/ml-kit/vision/barcode-scanning). 
+
+This plugin supports the `android` and `ios` platforms.
 
 ## Installation
 
