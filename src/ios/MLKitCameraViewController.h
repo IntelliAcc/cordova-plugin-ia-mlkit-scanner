@@ -4,6 +4,7 @@
 
 -(void)closeScanner;
 -(void)sendResult:(NSString *)result;
+-(void)errorOccurred;
 
 @end
 

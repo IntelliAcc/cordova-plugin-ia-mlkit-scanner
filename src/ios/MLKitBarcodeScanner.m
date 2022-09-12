@@ -87,6 +87,17 @@
   [self.commandDelegate sendPluginResult:pluginResult callbackId:_callback];
 }
 
+-(void)errorOccurred
+{
+  [self.cameraViewController dismissViewControllerAnimated:NO completion:nil];
+  _scannerOpen = NO;
+  
+  CDVPluginResult *pluginResult=[CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"BARCODE_NOT_MATCH"];
+  
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:_callback];
+  
+}
+
 -(void)closeScanner
 {
   [self.cameraViewController dismissViewControllerAnimated:NO completion:nil];

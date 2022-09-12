@@ -41,13 +41,15 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.material.snackbar.Snackbar;
 
-import com.google.mlkit.vision.barcode.common.Barcode;
+import com.google.mlkit.vision.barcode.Barcode;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 
 // ----------------------------------------------------------------------------
 // |  Java Imports
 // ----------------------------------------------------------------------------
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 // ----------------------------------------------------------------------------
 // |  Our Imports
@@ -82,6 +84,7 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
   private ScaleGestureDetector           _ScaleGestureDetector;
   private GestureDetector                _GestureDetector     ;
 
+  public List<String> globalBarcodes = new ArrayList<String>();
   // ----------------------------------------------------------------------------
   // |  Public Functions
   // ----------------------------------------------------------------------------
@@ -243,11 +246,20 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
   @Override
   public void onBarcodeDetected(String barcode) {
     // do something with barcode data returned
-
-    Intent data = new Intent();
-    data.putExtra(BarcodeValue, barcode);
-    setResult(CommonStatusCodes.SUCCESS, data);
-    finish();
+    if(globalBarcodes.size() < 2) {
+      globalBarcodes.add(barcode);
+    }
+    if(globalBarcodes.size() > 1) {
+      Intent data = new Intent();
+      if(globalBarcodes.get(0).equals(globalBarcodes.get(1))) {
+        data.putExtra(BarcodeValue, barcode);
+        setResult(CommonStatusCodes.SUCCESS, data);
+      } else {
+        data.putExtra(BarcodeValue, "BARCODE_NOT_MATCH");
+        setResult(CommonStatusCodes.ERROR, data);
+      }
+      finish();
+    }
   }
 
   // ----------------------------------------------------------------------------

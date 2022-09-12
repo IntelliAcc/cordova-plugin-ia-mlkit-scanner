@@ -83,8 +83,14 @@ public class MLKitSecondaryActivity extends Activity implements View.OnClickList
           setResult(CommonStatusCodes.ERROR, d);
         }
       } else {
-        d.putExtra("err", "There was an error with the barcode reader.");
-        setResult(CommonStatusCodes.ERROR, d);
+        if (p_Data != null) {
+          String barcode = p_Data.getStringExtra(MLKitBarcodeCaptureActivity.BarcodeValue);
+          d.putExtra("err", barcode);
+          setResult(CommonStatusCodes.ERROR, d);
+        } else {
+          d.putExtra("err", "There was an error with the barcode reader.");
+          setResult(CommonStatusCodes.ERROR, d);
+        }
       }
       finish();
     } else {

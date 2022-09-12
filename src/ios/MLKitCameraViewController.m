@@ -30,7 +30,7 @@
 @property(nonatomic, strong) MLKBarcodeScanner *barcodeScanner;
 @property(nonatomic, strong) UIButton *torchButton;
 @property(nonatomic, retain) UITextField* txtBarcode;
-
+@property(nonatomic, retain) NSMutableArray<MLKBarcode *> *_Nullable globalBarcodes;
 @end
 
 @implementation MLKitCameraViewController
@@ -66,7 +66,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+  self.globalBarcodes = [NSMutableArray array];
+
   // Set up camera.
   self.session = [[AVCaptureSession alloc] init];
   self.session.sessionPreset = AVCaptureSessionPresetHigh;
@@ -172,14 +173,25 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       // Error handling
       return;
     }
-    if (barcodes.count > 0) {
-      for (MLKBarcode *barcode in barcodes) {
-        
-        NSLog(@"Barcode value: %@", barcode.rawValue);
+    
+    if(barcodes.count > 0) {
+      [self.globalBarcodes addObject:[barcodes objectAtIndex:0]];
+    }
+    if (self.globalBarcodes.count > 1) {
+      if([self.globalBarcodes[0].rawValue isEqualToString: self.globalBarcodes[1].rawValue]) {
+        for (MLKBarcode *barcode in barcodes) {
+          
+          NSLog(@"Barcode value: %@", barcode.rawValue);
+          [self cleanupCaptureSession];
+          [self->_session stopRunning];
+          [self->delegate sendResult:barcode.rawValue];
+          break;
+        }
+      } else {
+        NSLog(@"error");
         [self cleanupCaptureSession];
         [self->_session stopRunning];
-        [self->delegate sendResult:barcode.rawValue];
-        break;
+        [self->delegate errorOccurred];
       }
     }
   }];
