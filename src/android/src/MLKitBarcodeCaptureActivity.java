@@ -258,6 +258,8 @@ public final class MLKitBarcodeCaptureActivity extends    AppCompatActivity
         data.putExtra(BarcodeValue, "BARCODE_NOT_MATCH");
         setResult(CommonStatusCodes.ERROR, data);
       }
+
+
       finish();
     }
   }
