@@ -145,6 +145,9 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   MLKVisionImage *image = [[MLKVisionImage alloc] initWithBuffer:sampleBuffer];
   AVCaptureDevicePosition cameraPosition =
   AVCaptureDevicePositionBack;  // Set to the capture device you used.
+  if([self.cameraFacing isEqualToNumber:@0]) {
+    cameraPosition = AVCaptureDevicePositionFront;
+  }
   image.orientation = [self imageOrientationFromDeviceOrientation:UIDevice.currentDevice.orientation cameraPosition:cameraPosition];
   
   [self.barcodeScanner processImage:image
@@ -444,7 +447,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   for (AVCaptureDevice *device in devices){
     NSLog(@"Device name: %@", [device localizedName]);
     if ([device hasMediaType:AVMediaTypeVideo]) {
-      if ([device position] == AVCaptureDevicePositionBack) {
+      
+      AVCaptureDevicePosition selectedPos = AVCaptureDevicePositionBack;
+      if([self.cameraFacing isEqualToNumber:@0]) {
+        selectedPos = AVCaptureDevicePositionFront;
+      }
+      if ([device position] == selectedPos) {
         NSLog(@"Device position : back");
         CGPoint point = CGPointMake(focus_y, 1-focus_x);
         if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus] && [device lockForConfiguration:&error]){
@@ -559,6 +567,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
   }
   
   AVCaptureDevicePosition desiredPosition = AVCaptureDevicePositionBack;
+  if([self.cameraFacing isEqualToNumber:@0]) {
+    desiredPosition = AVCaptureDevicePositionFront;
+  }
   AVCaptureDeviceInput *input = [self captureDeviceInputForPosition:desiredPosition];
   if (!input) {
     // Failed, restore old inputs
