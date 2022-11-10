@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ia-mlkit-scanner",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "MLKit Barcode Scanner plugin for Cordova",
   "author": "IntelliAcc Systems",
   "license": "MIT",
