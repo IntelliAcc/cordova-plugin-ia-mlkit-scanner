@@ -59,7 +59,7 @@
       f.numberStyle = NSNumberFormatterDecimalStyle;
       NSNumber * barcodeFormats = [command argumentAtIndex:1 withDefault:@1234];
 			
-      self.cameraViewController.cameraFacing = [command argumentAtIndex:0 withDefault:1] ;
+      self.cameraViewController.cameraFacing = [command argumentAtIndex:0 withDefault:@0] ;
       self.cameraViewController.scanAreaWidth = (CGFloat)[[command argumentAtIndex:2 withDefault:@.5] floatValue];
       self.cameraViewController.scanAreaHeight = (CGFloat)[[command argumentAtIndex:3 withDefault:@.7] floatValue];
       self.cameraViewController.barcodeFormats = barcodeFormats;

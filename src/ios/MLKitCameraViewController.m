@@ -145,7 +145,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   MLKVisionImage *image = [[MLKVisionImage alloc] initWithBuffer:sampleBuffer];
   AVCaptureDevicePosition cameraPosition =
   AVCaptureDevicePositionBack;  // Set to the capture device you used.
-  if([self.cameraFacing isEqualToNumber:@0]) {
+  if([self.cameraFacing isEqualToNumber:@1]) {
     cameraPosition = AVCaptureDevicePositionFront;
   }
   image.orientation = [self imageOrientationFromDeviceOrientation:UIDevice.currentDevice.orientation cameraPosition:cameraPosition];
@@ -449,7 +449,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if ([device hasMediaType:AVMediaTypeVideo]) {
       
       AVCaptureDevicePosition selectedPos = AVCaptureDevicePositionBack;
-      if([self.cameraFacing isEqualToNumber:@0]) {
+      if([self.cameraFacing isEqualToNumber:@1]) {
         selectedPos = AVCaptureDevicePositionFront;
       }
       if ([device position] == selectedPos) {
@@ -567,7 +567,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
   }
   
   AVCaptureDevicePosition desiredPosition = AVCaptureDevicePositionBack;
-  if([self.cameraFacing isEqualToNumber:@0]) {
+  if([self.cameraFacing isEqualToNumber:@1]) {
     desiredPosition = AVCaptureDevicePositionFront;
   }
   AVCaptureDeviceInput *input = [self captureDeviceInputForPosition:desiredPosition];

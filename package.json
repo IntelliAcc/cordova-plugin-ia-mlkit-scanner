@@ -4,7 +4,7 @@
   "description": "MLKit Barcode Scanner plugin for Cordova",
   "author": "IntelliAcc Systems",
   "license": "MIT",
-  "homepage": "https://github.com/NicolaasZA/cordova-plugin-ia-mlkit-scanner#readme",
+  "homepage": "https://github.com/IntelliAcc/cordova-plugin-ia-mlkit-scanner#readme",
   "cordova": {
     "id": "cordova-plugin-ia-mlkit-scanner",
     "platforms": [
@@ -14,6 +14,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NicolaasZA/cordova-plugin-ia-mlkit-scanner.git"
+    "url": "git+https://github.com/IntelliAcc/cordova-plugin-ia-mlkit-scanner.git"
   }
 }
